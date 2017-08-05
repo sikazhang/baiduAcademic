@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+       <link href="css/task3.css" rel="stylesheet">
+    </head>
+    <body>
+		<div id="container">
+		    <div id="main"></div>
+		    <div id="left"></div>
+		    <div id="right"></div>
+		</div>
+    </body>
+</html>
+
+<!-- /*
+注意：
+1. 中间三者都 float:left , 再加上一个position:relative
+2. 中间部分 width:100%占满
+3. 此时中间占满了，所以要把left拉到最左边，使用margin-left:-100%
+4. 这时left拉回来了，但会覆盖中间内容的左端，要把中间内容拉出来，所以在外围container加上 padding:0 220px 0 200px
+5. 中间内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
+6. 为什么content元素不能加width:100%; 因为盒模型总宽度＝width＋padding＋margin＋border，加上之后会超出。
+7. center元素要放在left和right前面。
+*/ -->

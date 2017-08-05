@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+       <link href="css/task2.css" rel="stylesheet">
+    </head>
+    <body>
+		<div id="container">
+		    <div id="main">
+		    	<div id="inner"></div>
+		    </div>
+
+		    <div id="left"></div>
+		    <div id="right"></div>
+		</div>
+    </body>
+</html>
+/*
+圣杯布局缺点：
+1. 使用相对定位布局，具有局限性。
+2. 宽度控制需要修改很多地方。
+双翼飞与圣杯布局区别：
+1. 去掉了左右栏的相对定位，去掉包裹层padding，以中间栏新增div的margin代替
+2. left中删除right属性，right中修改margin-right为margin-left。
+*/

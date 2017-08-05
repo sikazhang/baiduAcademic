@@ -1,0 +1,151 @@
+/*
+* @Author: whuzxq
+* @Date:   2017-08-04 09:53:14
+* @Last Modified by:   whuzxq
+* @Last Modified time: 2017-08-04 13:59:13
+*/
+nav{
+	height:50px;
+	background-color: #333333;
+
+}
+.clearfix:after{
+	display: block;
+	content:'';
+	clear:both;
+
+}
+
+nav img{
+	height:40px;
+	float:left;
+	padding:5px 40px;
+}
+
+nav ul{
+	float:right;
+	margin:0px;
+}
+
+nav ul li{
+	line-height: 50px;
+	display: inline-block;
+	padding-right: 20px;
+
+}
+nav ul li a{
+	color:#fff;
+	text-decoration: none;
+	height: inherit;
+	line-height: 50px;
+}
+nav ul li:nth-child(4) a:nth-child(1){
+	color #dedede;
+}
+
+.content{
+	margin:30px;
+	background-color: #fff;
+	border: 2px solid #dedede;
+	-moz-box-shadow: 3px 3px 5px #888888; /* 老的 Firefox */
+	box-shadow: 3px 3px 5px #888888;
+	padding:30px 20px;
+
+}
+.content:first-child{
+	margin-top:0px;
+}
+.content:last-child{
+	margin-bottom:0px;
+}
+.content h1{
+	margin:0px;
+	font-weight: 600
+}
+.content h2{
+	color #dedede;
+	font-weight: 500
+}
+.content  span{
+	margin:0px;
+	color #dedede;
+	font-weight: 500
+}
+.content img{
+	width:600px;
+}
+.list-item{
+	list-style:none;
+}
+.image-style {
+	border:1px solid #dedede;
+	width:150px;
+	height: 150px;
+	text-align:center;
+	margin-bottom: 20px;
+}
+.image-style img{
+	width:130px;
+
+}
+
+table{
+	border:1px solid #dedede;
+	width:100%;
+	text-align: left;
+	line-height: 25px;
+}
+table tr th{
+	background-color: black;
+	color:#fff;
+	padding:5px 10px;
+}
+table tr:nth-child(6){
+	background-color: #f0f0f0;
+	font-weight: 600
+}
+
+
+form{
+	margin:0 auto;
+	width:500px;
+}
+.onepart{
+	padding:10px;
+}
+
+.onepart label{
+	width:150px;
+	text-align: right;
+	display: inline-block;
+	margin-right: 10px;
+}
+.twopart {
+	padding:10px;
+}
+.twopart span{
+	width:150px;
+	text-align: right;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.onepart:last-child input:nth-child(1){
+	width:100%;
+	background-color: #f0f0f0;
+	border:0px solid #fff;
+	height:30px;
+
+}
+
+footer{
+	height:50px;
+	text-align: center;
+	background-color: #333;
+	color:#fff;
+}
+
+.main{
+	background-color: #ccc;
+	padding:20px 0px;
+}
