@@ -1,0 +1,54 @@
+/*
+* @Author: whuzxq
+* @Date:   2017-08-29 16:56:37
+* @Last Modified by:   whuzxq
+* @Last Modified time: 2017-08-30 11:21:47
+*/
+
+@media screen and (max-width:640px){
+	.four{
+		order:1;
+	}
+	.one{
+		order:2;
+	}
+	.two{
+		order:3;
+	}
+	.three{
+		order:4;
+	}
+
+}
+.container{
+	display: flex;
+	flex-direction: row;
+	align-items:center;
+	flex-wrap:wrap;
+
+}
+
+.one{
+	height:120px;
+	flex:0 1 150px;
+	margin:20px;
+	border:1px solid #f00;
+}
+.two{
+	height:100px;
+	flex:0 1 150px;
+	margin:20px;
+	border:1px solid #f00;
+}
+.three{
+	height:40px;
+	flex:0 1 150px;
+	margin:20px;
+	border:1px solid #f00;
+}
+.four{
+	height:200px;
+	flex:0 1 150px;
+	margin:20px;
+	border:1px solid #0f0;
+}
