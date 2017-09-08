@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+   #tb1 tr td{
+        width:60px;
+        height:40px;
+        border:1px solid #000;
+       
+   }
+   .upbtn{
+    border-color:transparent transparent #000 ;
+    border-style: solid;
+    border-width: 0 6px 8px;
+    cursor: pointer;
+    list-style: none;
+    display: inline-block;
+   }
+   .downbtn{
+    border-color:#000 transparent transparent ;
+    border-style: solid;
+    border-width: 8px 6px 0;
+    cursor: pointer;
+    list-style: none;
+    display: inline-block;
+    transform:translate(37px,-10px);
+   }
+   #tb1{
+     border-collapse: collapse;
+   }
+    </style>
+</head>
+
+<body>
+    <table id="tb1">
+        <thead>
+        <tr>
+        <td>名字</td>
+        <td>
+        语文
+        <li id="chineseUp" class="upbtn"></li>
+        <li id="chineseDown" class="downbtn"></li>
+        </td>
+        <td>
+        数学
+         <li id="mathUp" class="upbtn"></li>
+        <li id="mathDown" class="downbtn"></li>
+        </td>
+        <td>英语
+         <li id="englishUp" class="upbtn"></li>
+        <li id="englishDown" class="downbtn"></li>
+        </td>
+        <td>总分
+         <li id="totalUp" class="upbtn"></li>
+        <li id="totalDown" class="downbtn"></li>
+        </td></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <script type="text/javascript">
+     let data = [{
+        "name": "小明",
+        "chinese": 80,
+        "math": 90,
+        "english": 70,
+        "totalScore": null
+    }, {
+        "name": "小红",
+        "chinese": 90,
+        "math": 60,
+        "english": 90,
+        "totalScore": null
+    }, {
+        "name": "小亮",
+        "chinese": 60,
+        "math": 100,
+        "english": 70,
+        "totalScore": null
+    }, {
+        "name": "小李",
+        "chinese": 50,
+        "math": 70,
+        "english": 90,
+        "totalScore": null
+    }, {
+        "name": "小王",
+        "chinese": 50,
+        "math": 70,
+        "english": 60,
+        "totalScore": null
+    }, {
+        "name": "小张",
+        "chinese": 90,
+        "math": 90,
+        "english": 80,
+        "totalScore": null
+    }];
+    var table=document.getElementById("tb1");
+    var englishUp=document.getElementById("englishUp");
+    var englishDown=document.getElementById("englishDown");
+    var chineseUp=document.getElementById("chineseUp");
+    var chineseDown=document.getElementById("chineseDown");
+    var mathUp=document.getElementById("mathUp");
+    var mathDown=document.getElementById("mathDown");
+    var totalUp=document.getElementById("totalUp");
+    var totalDown=document.getElementById("totalDown");
+    var tbody=document.getElementById("tbody");
+
+    var init=function(data){
+       tbody.innerHTML="";
+        for(var i=0;i<data.length;i++){
+            data[i]["totalScore"]=data[i]["chinese"]+data[i]["math"]+data[i]["english"];
+            tbody.innerHTML+='<tr id="one"><td>'+data[i]["name"]+'</td><td>'+data[i]["chinese"]+'</td><td>'+data[i]["math"]+'</td><td>'+data[i]["english"]+'</td><td>'+data[i]["totalScore"]+'</td></tr>';
+        }
+
+    }
+    window.onload=function(){
+        init(data);
+    }
+    
+    var sortScore=function(obj){
+         var index=[];
+       
+        switch(obj){
+            case englishUp:   
+                index=data.sort(function(a,b){
+                    return (b["english"]-a["english"])
+                })
+                break;
+            case englishDown:   
+                index=data.sort(function(a,b){
+                    return (a["english"]-b["english"])
+                })
+                break;
+            case chineseUp:   
+                index=data.sort(function(a,b){
+                    return (b["chinese"]-a["chinese"])
+                })
+                break;
+            case chineseDown:   
+                index=data.sort(function(a,b){
+                    return (a["chinese"]-b["chinese"])
+                })
+                break;
+            case mathUp:   
+                index=data.sort(function(a,b){
+                    return (b["math"]-a["math"])
+                })
+                break;
+            case mathDown:   
+                index=data.sort(function(a,b){
+                    return (a["math"]-b["math"])
+                })
+                break;
+            case totalUp:   
+                index=data.sort(function(a,b){
+                    return (b["totalScore"]-a["totalScore"])
+                })
+                break;
+            case totalDown:   
+                index=data.sort(function(a,b){
+                    return (a["totalScore"]-b["totalScore"])
+                })
+                break;
+
+            }
+
+            //显示出来
+            init(index);
+        }
+
+    englishUp.onclick=function(){sortScore(englishUp)};
+    englishDown.onclick=function(){sortScore(englishDown)};
+    chineseUp.onclick=function(){sortScore(chineseUp)};
+    chineseDown.onclick=function(){sortScore(chineseDown)};
+    mathUp.onclick=function(){sortScore(mathUp)};
+    mathDown.onclick=function(){sortScore(mathDown)};
+    totalUp.onclick=function(){sortScore(totalUp)};
+    totalDown.onclick=function(){sortScore(totalDown)};
+    
+   
+    </script>
+</body>
+
+</html>

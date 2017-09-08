@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style>
+  	.btn{
+  		border-radius: 5px;
+  		background-color: blue;
+  		border:0px solid #fff;
+  		color:#fff;
+  	}
+  	div{
+  		color:grey;
+  		font-size:16px;
+  	}
+  </style>
+<body>
+
+<form action=""> 
+	名称：
+	<input type="text" id="inputText"/>
+	<input type="button" value="验证" class="btn" id="name"/>
+	<div id="hint">必填，长度为4-16个字符</div>
+</form>
+
+<script type="text/javascript" src="EventUtils.js"></script>
+<script type="text/javascript">
+	 EventUtil.addHandler(document.getElementById("name"),"click",judge);
+
+	function judge(){
+		console.log("chufa");
+		var text=document.getElementById("inputText");
+		var hint=document.getElementById("hint");
+		var len=getByteLen(text.value);
+		if(len>4&&len<16){
+			hint.innerText="名称格式正确";
+			hint.style.color="#0f0";
+			return true;
+		}else{
+			hint.innerText="格式不正确";
+			hint.style.color="#f00";
+			return false;
+		}
+	};
+	 /**
+        *获取字符串长度 中文2 英文1
+        */
+    function getByteLen(str) {
+        var len = 0;
+        for (var i = 0; i < str.length; i++) {
+            var a = str.charAt(i);
+            if (a.match(/[^\x00-\xff]/g)) {
+                len += 2;
+            }
+            else {
+                len++;
+            }
+         }
+            return len;
+    };
+
+	
+ 
+
+
+</script>
+</body>
+</html>

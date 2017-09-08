@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body,html{
+            width:100%;
+            height:100%;
+        }
+       .floatWindow{
+        position: fixed;
+        top:calc(50% - 150px);
+        height: 300px;
+        left:calc(50% - 250px);
+        width:500px;
+        border:2px solid #000;
+        transition: all 0.2s ease-in;
+        opacity: 0;
+        z-index: 100;
+        opacity: 0;
+       }
+       header{
+        width:100%;
+        height:40px;
+        background-color: blue;
+        line-height: 40px;
+        color:#fff;
+       }
+       article{
+        width:100%;
+        height:200px;
+       }
+       footer{
+        text-align: right;
+        margin-right: 30px;
+       }
+       .overLay{
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, .5);
+        transition: opacity 0.5s ease-in;
+        display: none;
+        opacity: 0;
+       }
+    </style>
+</head>
+
+<body>
+    <button id="start">弹出窗口</button>
+    <div class="floatWindow" id="flw">
+        <header>这是一个浮出层</header>
+        <article>
+            <p>这是一个浮出层</p>
+        </article>
+        <footer>
+        <button id="sure">确定</button>
+        <button id="dismiss">取消</button>
+        </footer>
+    </div>
+    <div class="overLay" id="overLay"></div>
+    <script type="text/javascript">
+        var sure=document.getElementById("sure");
+        var dismiss=document.getElementById("dismiss");
+        var flw=document.getElementById("flw");
+        var overlay=document.getElementById("overLay");
+        var start=document.getElementById("start");
+        overLay.onclick=function(){
+            closePop();
+        }
+        start.onclick=function(){
+            popup();
+        }
+        sure.onclick=function(){
+            closePop();
+        }
+        function popup(){
+            overlay.style.display="block";
+            flw.style.opacity=1;
+            overlay.style.opacity=1;
+            
+        };
+        function closePop(){
+            flw.style.opacity=0;
+            setTimeout(function(that) {
+                  overlay.style.display="none";
+                }, 500);
+            
+            overlay.style.opacity=0;
+        };
+    </script>
+</body>
+
+</html>

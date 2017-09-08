@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style>
+
+    
+  	label{
+  		width:120px;
+  		font-size:18px;
+  		height: 30px;
+  		margin-right: 30px;
+  		text-align: right;
+  		display: inline-block;
+
+  	}
+  	input{
+  		width:200px;
+  		height:20px;
+  		border-radius: 5px;
+  		padding-left:10px;
+  	}
+  	.hint{
+  		height: 20px;
+  		margin-left: 150px;;
+  		color:#a8a8a8;
+  		font-size:12px;
+  	}
+  	#submit{
+  		width:100px;
+  		height: 30px;
+  		background-color: #2f79ba;
+  		color:#fff;
+  		margin-left: 150px;
+  	}
+
+  </style>
+<body>
+<form action="">
+	<div >
+		<label>名称</label>
+		<input id="input-name" name="name" type="text"/>
+		<div id="hint-name" class="hint"></div>
+	</div>
+	<div>
+		<label>密码</label>
+		<input id="input-password" name="password" type="password"/>
+		<div id="hint-password" class="hint"></div>
+	</div>
+	<div>
+		<label>密码确认</label>
+		<input id="input-pswRepeat" name="name" type="password"/>
+		<div id="hint-pswRepeat" class="hint"></div>
+	</div>
+	<div>
+		<label>邮箱</label>
+		<input id="input-email" name="name" type="text"/>
+		<div id="hint-email" class="hint"></div>
+	</div>
+	<div>
+		<label>手机</label>
+		<input id="input-phone" name="name" type="text"/>
+		<div id="hint-phone" class="hint"></div>
+	</div>
+	<div>
+		<input  class="btn" id="submit" name="name" value="提交" type="button"/>
+		
+	</div>
+</form>
+<script type="text/javascript" src="EventUtils.js"></script>
+<script type="text/javascript">
+	var hintName=document.getElementById("hint-name");
+	var hintPsw=document.getElementById("hint-password");
+	var hintPswRepeat=document.getElementById("hint-pswRepeat");
+	var hintEmail=document.getElementById("hint-email");
+	var hintPhone=document.getElementById("hint-phone");
+	var inputName=document.getElementById("input-name");
+	var inputPsw=document.getElementById("input-password");
+	var inputPswRepeat=document.getElementById("input-pswRepeat");
+	var inputEmail=document.getElementById("input-email");
+	var inputPhone=document.getElementById("input-phone");
+	function showName(){
+		hintName.innerText="必填，长度为4-16个字符";
+	}
+	function showPsw(){
+		hintPsw.innerText="必填，长度为4-16个字符";
+	}
+	function showPswRepeat(){
+		hintPswRepeat.innerText="必填，长度为4-16个字符";
+	}
+	function showEmail(){
+		hintEmail.innerText="必填，长度为4-16个字符";
+	}
+	function showPhone(){
+		hintPhone.innerText="必填，长度为4-16个字符";
+	}
+	function checkName(){
+		 hintName.style.color="#a8a8a8";
+		 var result = /^\S{4,16}$/.test(inputName.value);
+		 if(result){
+		 	hintName.innerText="格式正确";
+		 	hintName.style.color="#0f0";
+		 }else{
+		 	hintName.innerText="请输入正确的格式";
+		 	hintName.style.color="#f00";
+		 }
+
+	}
+	function checkPsw(){
+		hintPsw.style.color="#a8a8a8";
+		 var result = /^\S{4,16}$/.test(inputPsw.value);
+		 if(result){
+		 	hintPsw.innerText="格式正确";
+		 	hintPsw.style.color="#0f0";
+		 	return true;
+		 }else{
+		 	hintPsw.innerText="请输入正确的格式";
+		 	hintPsw.style.color="#f00"
+		 	return false;
+		 }
+	}
+	function checkPswRepeat(){
+		hintPswRepeat.style.color="#a8a8a8";
+		if(inputPswRepeat!=""&&inputPswRepeat.value==inputPsw.value){
+			hintPswRepeat.innerText="格式正确";
+		 	hintPswRepeat.style.color="#0f0";
+		 	return true;
+		}else{
+		 	hintPswRepeat.innerText="请输入正确的格式";
+		 	hintPswRepeat.style.color="#f00";
+		 	return false;
+		 }
+	}
+	function checkEmail(){
+		hintEmail.style.color="#a8a8a8";
+		var result=/^([a-zA-Z0-9]+[\._-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[\._-]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(inputEmail.value);
+		if(result){
+		 	hintEmail.innerText="格式正确";
+		 	hintEmail.style.color="#0f0";
+		 	return true;
+		 }else{
+		 	hintEmail.innerText="请输入正确的格式";
+		 	hintEmail.style.color="#f00"
+		 	return false;
+		 }
+
+	}
+	function checkPhone(){
+		hintPhone.style.color="#a8a8a8";
+		var result=/^1[345678]\d{9}$/.test(inputPhone.value);
+		if(result){
+		 	hintPhone.innerText="格式正确";
+		 	hintPhone.style.color="#0f0";
+		 	return true;
+		 }else{
+		 	hintPhone.innerText="请输入正确的格式";
+		 	hintPhone.style.color="#f00"
+		 	return false;
+		 }
+
+	}
+	function submitResult(){
+		if(checkName&&checkPhone&&checkEmail&&checkPsw
+			&&checkPswRepeat){
+			alert("成功提交");
+		}else{
+			alert("您提交的信息有误");
+		}
+	}
+
+	EventUtil.addHandler(document.getElementById("input-name"), "focus",showName);
+	EventUtil.addHandler(document.getElementById("input-password"), "focus",showPsw);
+	EventUtil.addHandler(document.getElementById("input-pswRepeat"), "focus",showPswRepeat);
+	EventUtil.addHandler(document.getElementById("input-email"), "focus",showEmail);
+	EventUtil.addHandler(document.getElementById("input-phone"), "focus",showPhone);
+
+	EventUtil.addHandler(document.getElementById("input-name"), "blur",checkName);
+	EventUtil.addHandler(document.getElementById("input-password"), "blur",checkPsw);
+	EventUtil.addHandler(document.getElementById("input-pswRepeat"), "blur",checkPswRepeat);
+	EventUtil.addHandler(document.getElementById("input-email"), "blur",checkEmail);
+	EventUtil.addHandler(document.getElementById("input-phone"), "blur",checkPhone);
+	EventUtil.addHandler(document.getElementById("submit"), "click",submitResult);
+
+</script>
+</body>
+</html>

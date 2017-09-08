@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style>
+  *{
+  	margin:0;
+  	padding:0;
+   }
+   html,body{
+   	position: relative;
+   }
+	#table tr td{
+		width:40px;
+		height:40px;
+		border:1px solid #000;
+	}
+	#table{
+		border:3px solid #000;
+		border-collapse: collapse;
+		margin:0 auto;
+		position: relative;
+		
+	}
+	#tablehead{
+		border-collapse: collapse;
+		margin:0 auto;
+		text-align: center;
+	}
+	#tableLeft{
+		position: absolute;
+		left:calc(50% - 240px);
+		top:40px;
+
+	}
+	#tablehead tr td{
+		width:40px;
+		height:40px;
+	}
+	#tableLeft tr td{
+		width:40px;
+		height:40px;
+	}
+	.center{
+		position:relative;
+		background-color: blue;
+	}
+	.center-direction{
+		position: absolute;
+		width:40px;
+		height:10px;
+		top: 0;
+		left:0;
+		background-color: red;
+	}
+	.center-left{
+		position: absolute;
+		width:10px;
+		height:40px;
+		top: 0;
+		left:0;
+		background-color: red;
+	}
+	.center-right{
+		position: absolute;
+		width:10px;
+		height:40px;
+		top: 0;
+		right:0;
+		background-color: red;
+	}
+	.center-down{
+		position: absolute;
+		width:40px;
+		height:10px;
+		bottom: 0;
+		right:0;
+		background-color: red;
+	}
+	.operation{
+		text-align: center;
+		margin-top:30px;
+	}
+	.operation input{
+		width:50px;
+		display: inline-block;
+	}
+  </style>
+<body>
+	<table id="tablehead">
+		<tr>
+			<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+		</tr>
+	</table>
+	<table id="tableLeft">
+		<tr><td>1</td></tr>
+		<tr><td>2</td></tr>
+		<tr><td>3</td></tr>
+		<tr><td>4</td></tr>
+		<tr><td>5</td></tr>
+		<tr><td>6</td></tr>
+		<tr><td>7</td></tr>
+		<tr><td>8</td></tr>
+		<tr><td>9</td></tr>
+		<tr><td>10</td></tr>
+	</table>
+	<table id="table">
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+		<tr><td></td><td></td><td></td><td></td>
+		<td id="td55">
+		</td>
+		<td></td><td></td><td></td><td></td><td></td></tr>
+
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	</table>
+	<div class="operation">
+		<input id="start" type="button" value="start"/>
+		<input id="left" type="button" value="left"/>
+		<input id="right" type="button" value="right"/>
+		<input id="back" type="button" value="back"/>
+		<input id="go" type="button" value="go"/>
+	</div>
+<script type="text/javascript">
+var target=document.getElementById("td55");
+var direction=1;
+var moveTarget=target;
+var start=document.getElementById("start");
+var left=document.getElementById("left");
+var right=document.getElementById("right");
+var back=document.getElementById("back");
+var go=document.getElementById("go");
+start.onclick=function(){
+	moveTarget.innerHTML="";
+	moveTarget.className="";
+	target.className="center";
+	var str="<div class='center-direction'></div>";
+	target.innerHTML=str;
+	moveTarget=target;
+	direction=1;	
+}
+left.onclick=function(){
+	moveTarget.children[0].className="center-left";
+	direction=4;
+}
+right.onclick=function(){
+	moveTarget.children[0].className="center-right";
+	direction=2;
+}
+back.onclick=function(){
+	if(direction==1){
+	moveTarget.children[0].className="center-down";
+	direction=3;
+	return;
+	}
+	if(direction==2){
+	moveTarget.children[0].className="center-left";
+	direction=4;
+	return;
+	}
+	if(direction==3){
+	moveTarget.children[0].className="center-direction";
+	direction=1;
+	return;
+	}
+	if(direction==4){
+	moveTarget.children[0].className="center-right";
+	direction=2;
+	return;
+	}
+}
+go.onclick=function(){
+	if(direction==4){
+		var curTarget=moveTarget.previousElementSibling;
+		if(!curTarget){
+			return
+		}
+		moveTarget.innerHTML="";
+		moveTarget.className="";
+		curTarget.className="center";
+		var str="<div class='center-left'></div>";
+		curTarget.innerHTML=str;
+		moveTarget=curTarget;
+		return;
+	}
+	if(direction==2){
+		var curTarget=moveTarget.nextElementSibling;
+		if(!curTarget){
+			return
+		}
+		moveTarget.innerHTML="";
+		moveTarget.className="";
+		curTarget.className="center";
+		var str="<div class='center-right'></div>";
+		curTarget.innerHTML=str;
+		moveTarget=curTarget;
+		return;
+	}
+	if(direction==1){
+		var index=0;
+		var parentNode=moveTarget.parentNode;
+		
+		for(var i=0;i<parentNode.children.length;i++){
+			if(parentNode.children[i]==moveTarget){
+				index=i
+				break;
+			}
+		}
+		var preParent=parentNode.previousElementSibling;
+		if(!preParent){
+			return
+		}
+		var curTarget=preParent.children[index];
+		moveTarget.innerHTML="";
+		moveTarget.className="";
+		curTarget.className="center";
+		var str="<div class='center-direction'></div>";
+		curTarget.innerHTML=str;
+		moveTarget=curTarget;
+		return;
+	}
+	if(direction==3){
+		var index=0;
+		var parentNode=moveTarget.parentNode;
+		
+		for(var i=0;i<parentNode.children.length;i++){
+			if(parentNode.children[i]==moveTarget){
+				index=i
+				break;
+			}
+		}
+		var preParent=parentNode.nextElementSibling;
+		if(!preParent){
+			return
+		}
+		var curTarget=preParent.children[index];
+		moveTarget.innerHTML="";
+		moveTarget.className="";
+		curTarget.className="center";
+		var str="<div class='center-down'></div>";
+		curTarget.innerHTML=str;
+		moveTarget=curTarget;
+		return;
+	}
+}
+</script>
+</body>
+</html>
