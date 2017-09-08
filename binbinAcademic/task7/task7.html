@@ -1,0 +1,114 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务七：JavaScript和树（一）</title>
+        <style>
+
+          #one{
+            display: flex;
+            flex-direction: row;
+            border:1px solid #000;
+            margin:10px;
+            width:800px;
+            height:400px;
+          }
+          #two,#three,#four{
+            margin:20px;
+            border:1px solid #000;
+            height:calc(100% - 40px);
+            flex:0 1 50%;
+            display: flex;
+            flex-direction: row;
+
+          }
+        
+        </style>
+    </head>
+    <body>
+      <div id="one">
+        <div id="two">
+          <div id="three">
+            <div id="four"></div>
+            <div id="four"></div>
+          </div>
+          <div id="three">
+            <div id="four"></div>
+            <div id="four"></div>
+          </div>
+        </div>
+        <div id="two">
+          <div id="three">
+            <div id="four"></div>
+            <div id="four"></div>
+          </div>
+          <div id="three">
+            <div id="four"></div>
+            <div id="four"></div>
+          </div>
+        </div>
+      </div>
+      <input type="button" id="pre" value="前序遍历"/>
+      <input type="button" id="in" value="中序遍历"/>
+      <input type="button" id="post" value="后序遍历"/>
+    </body>
+    <script type="text/javascript" src="EventUtils.js"></script>
+    <script type="text/javascript">
+    var rootNode=document.getElementById("one");
+    var nodeList=[]
+    function preOrderShow(node){
+      if(node){
+        nodeList.push(node);
+        preOrderShow(node.children[0]);
+        preOrderShow(node.children[1]);
+      }
+    }
+    function inOrderShow(node){
+       if(node){
+      preOrderShow(node.children[0]);
+      nodeList.push(node);
+      preOrderShow(node.children[1]);
+    }
+    }
+    function postOrderShow(node){
+       if(node){
+      postOrderShow(node.children[0]);
+      postOrderShow(node.children[1]);
+      nodeList.push(node);
+      }
+    }
+    function show(){
+      var i=0;
+      var timer=setInterval(function(){
+        if(i<nodeList.length){
+          if(i>=1){
+         nodeList[i-1].style.backgroundColor='#fff';
+        }
+         nodeList[i++].style.backgroundColor='#00f';
+
+        }else{
+          clearInterval(timer);
+          nodeList[i-1].style.backgroundColor='#fff';
+        }
+      },500);
+    }
+    function preExe(){
+      nodeList=[];
+      preOrderShow(rootNode);
+      show();
+    }
+    function inExe(){
+      nodeList=[];
+      inOrderShow(rootNode);
+      show();
+    }
+    function postExe(){
+      nodeList=[];
+      postOrderShow(rootNode);
+      show();
+    }
+    EventUtil.addHandler(document.getElementById("pre"),"click",preExe);
+    EventUtil.addHandler(document.getElementById("in"),"click",inExe);
+    EventUtil.addHandler(document.getElementById("post"),"click",postExe);
+    </script>
+</html>

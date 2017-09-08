@@ -1,0 +1,173 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务八：JavaScript和树（二）</title>
+        <style type="text/css">
+       
+        #one{
+            display: flex;
+            flex-direction: row;
+            border:1px solid #000;
+            margin:10px;
+            
+            height:200px;
+          }
+          #two,#three,#four,#five{
+            display: inline-block;
+            margin:20px;
+            border:1px solid #000;
+            height:calc(100% - 40px);
+            display: flex;
+            flex-direction: row;
+            flex:0 1 auto;
+
+
+          }
+        </style>
+    </head>
+    <body>
+    <div>
+       <div id="one">
+       Super
+        <div id="two">
+        Cot
+          <div id="three">
+          Apple
+            <div id="four">Pear</div>
+            <div id="four">Pig</div>
+            <div id="four">Cola</div>
+            <div id="four">Soccer</div>
+          </div>
+          <div id="three">
+            Phone
+          </div>
+           <div id="three">
+            <div id="four">Book</div>
+            <div id="four">School</div>
+          </div>
+        </div>
+        <div id="two">
+        Note
+          <div id="three">
+          Human
+            <div id="four">Code</div>
+            <div id="four">Operate</div>
+             <div id="four">Man</div>
+          </div>
+          <div id="three">
+          Program
+            <div id="four">Bement
+            <div id="five">Cat</div>
+            </div>
+            <div id="four">Glass</div>
+          </div>
+        </div>
+        <div id="two">
+        Fish
+        </div>
+      </div>
+    </div>
+      <input type="button" id="DFT" value="深度优先遍历"/>
+      <input type="button" id="BFT" value="广度优先遍历"/>
+      <input id="search-text" type="text" name="name" >
+      <input type="button" id="DFS" value="深度优先搜索"/>
+      <input type="button" id="BFS" value="广度优先搜索"/>
+    </body>
+    <script type="text/javascript" src="EventUtils.js"></script>
+     <script type="text/javascript">
+    var rootNode=document.getElementById("one");
+    var nodeList=[];
+    var BFindex = 0;//广度优先遍历自增标识符
+    var found=false;
+    var foundNode = [];
+    function traverseDF(node){
+      if(node){
+        nodeList.push(node);
+        var child=node.children;
+        for(var i=0,len=child.length;i<len;i++){
+          traverseDF(child[i]);
+        }
+      }
+
+    }
+    // function traverseBF(node){
+    //   if(node){
+    //     nodeList.push(node);
+    //     traverseBF(node.nextElementSibling);
+    //     node=nodeList[BFindex++];
+    //     console.log(node);
+    //     traverseBF(node.firstElementChild);
+    //   }
+    // }
+     function traverseBF(node) {
+        if (node) {
+            nodeList.push(node);
+            traverseBF(node.nextElementSibling);
+            node = nodeList[BFindex++];
+            traverseBF(node.firstElementChild);
+        }
+    }
+    function show(){
+      var i=0;
+      var timer=setInterval(function(){
+        if(i<nodeList.length){
+          if(i>=1){
+         nodeList[i-1].style.backgroundColor='#fff';
+        }
+         nodeList[i++].style.backgroundColor='#00f';
+
+        }else{
+          clearInterval(timer);
+          nodeList[i-1].style.backgroundColor='#fff';
+        }
+      },500);
+    }
+    function show(text){
+      var i=0;
+      var timer=setInterval(function(){
+        if(i<nodeList.length){
+          if(i>=1){
+         nodeList[i-1].style.backgroundColor='#fff';
+        }
+         nodeList[i].style.backgroundColor='#00f';
+         if(text&&text == nodeList[i].innerText){
+            nodeList[i].style.backgroundColor="#f00";
+         }
+
+         i++;
+        }else{
+          clearInterval(timer);
+          nodeList[i-1].style.backgroundColor='#fff';
+        }
+      },500);
+    }
+    function DFExe(){
+      nodeList=[];
+      traverseDF(rootNode);
+      show();
+    }
+    function BFExe(){
+      BFindex=0;
+      nodeList=[];
+      traverseBF(rootNode);
+      show();
+    }
+     function DFSearch(text){
+      nodeList=[];
+      traverseBF(rootNode);
+      show(text);
+    }
+     function BFSearch(text){
+      BFindex=0;
+      nodeList=[];
+      traverseBF(rootNode);
+      show(text);
+    }
+  
+    EventUtil.addHandler(document.getElementById("DFT"),"click",DFExe);
+    EventUtil.addHandler(document.getElementById("BFT"),"click",BFExe);
+    EventUtil.addHandler(document.getElementById("DFS"),"click",function(){DFSearch(document.getElementById("search-text").value)});
+    EventUtil.addHandler(document.getElementById("BFS"),"click",function(){BFSearch(document.getElementById("search-text").value)});
+    </script>
+</html>
